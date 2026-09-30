@@ -4,7 +4,7 @@ This application is built using React. Here a user will be able to browse movies
 
 ## 🌐 Application URL
 
-Currently, the application is live on: [PopcornEcho](https://google.com)
+Currently, the application is live on: [PopcornEcho](https://movie-explorer-app-flame.vercel.app)
 
 ## 🛠️ Technology Stack
 
