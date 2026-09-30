@@ -1,6 +1,23 @@
+import { useState } from "react";
+import MovieDetailsModal from "./MovieDetailsModal";
+
 export default function Card(props) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [click, setClick] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
   const movieDate = props.movie?.premiered;
   const movieYear = movieDate.split("-")[0];
+
+  const handleOpenModal = (movie) => {
+    setSelectedMovie(movie);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedMovie(null);
+  };
 
   return (
     <div className="bg-white p-4 sm:p-6 border border-slate-200 shadow-sm w-full max-w-sm rounded-lg mx-auto mt-6 overflow-hidden">
@@ -54,14 +71,19 @@ export default function Card(props) {
         </div>
 
         <div className="mt-6 text-center">
-          <a
-            href="#"
+          <button
+            onClick={() => handleOpenModal(props.movie)}
             className="inline-block py-2 px-3.5 text-sm rounded-md font-semibold cursor-pointer text-white border border-blue-600 bg-blue-600 hover:bg-blue-700 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             See details
-          </a>
+          </button>
         </div>
       </div>
+      <MovieDetailsModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        movieData={selectedMovie}
+      />
     </div>
   );
 }
